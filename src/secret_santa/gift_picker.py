@@ -3,8 +3,8 @@ import time
 from random import seed, randint
 from typing import List
 
-from person import Person
 from pick import Pick
+from person import Person
 
 
 def identifyValidRecipients(giver: Person, remainingRecipients: List[Person]) -> List[Person]:
@@ -26,15 +26,15 @@ class GiftPicker:
         givers = copy.deepcopy(self.recipients)
         chooseAgain: bool = True
         count: int = 0
+        picks = []
         while chooseAgain:
             # print("iteration " + str(count))
             picks = []
             seed(time.time())  # use time in seconds to seed RNG
             remainingRecipients = copy.deepcopy(givers)
             chooseAgain = False
-            for idx in range(len(givers)):
-                giver = givers[idx]
-                # print("Giver: " + str(giver))
+            for giver in givers:
+                print("Giver: " + str(giver))
                 validRecipients = identifyValidRecipients(giver, remainingRecipients)
 
                 # print("valid recipients")
