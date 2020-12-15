@@ -1,0 +1,7 @@
+first,last,household,person_type,recipient_type,email_address,phone_number,wishlist
+Fred, Flintstone, FRED_AND_WILMA, ADULT, ADULT, fred.flintstone@gmail.com, 654-555-1212,
+Wilma, Flintstone, FRED_AND_WILMA, ADULT, ALL, wilma.flintstone@gmail.com, 654-555-1213,
+Pebbles, Flintstone, FRED_AND_WILMA, CHILD, ALL, pebbles.flintstone@gmail.com, 654-555-1214,
+Barney, Rubble, BARNIE_AND_BETTY, ADULT, ALL, barney.rubble@gmail.com, 654-555-1215,
+Betty, Rubble, BARNIE_AND_BETTY, ADULT, ALL, betty.rubble@gmail.com, 654-555-1216,
+Bamm-Bamm, Rubble, BARNIE_AND_BETTY, CHILD, ALL, bammbamm.rubble@gmail.com, 654-555-1217,

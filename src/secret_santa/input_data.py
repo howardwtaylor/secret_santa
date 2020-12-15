@@ -1,25 +1,24 @@
+import pandas as pd
 from typing import List
 
-from household import Household
-from person import Person
+from secret_santa.person import Household, Person, PersonType
 
 
-def assignments() -> List[Person]:
-    recipients = [
-        Person('Bob', '', Household.BOB_AND_NAN, '', ''),
-        Person('Nan', '', Household.BOB_AND_NAN, '', ''),
-        Person('Gordon', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Heather', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Gabriel', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Michael', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Lucas', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Samuel', '', Household.GORD_AND_HEATHER, '', ''),
-        Person('Dee', '', Household.DEE, '', ''),
-        Person('Howard', '', Household.HOW_AND_HELENE, '', ''),
-        Person('Helene', '', Household.HOW_AND_HELENE, '', ''),
-        Person('Madeline', '', Household.HOW_AND_HELENE, '', ''),
-        Person('Jeremy', '', Household.HOW_AND_HELENE, '', ''),
-        Person('Margot', '', Household.HOW_AND_HELENE, '', ''),
-        Person('Jonathan', '', Household.HOW_AND_HELENE, '', '')]
+def load_input_data(filename: str) -> List[Person]:
+    # load data from csv as a data frame
+    df = pd.read_csv(filename, delimiter=',', na_values='',
+                     converters={'first': str.strip, 'last': str.strip,
+                                 'household': str.strip, 'person_type': str.strip,
+                                 'recipient_type': str.strip, 'email_address': str.strip,
+                                 'phone_number': str.strip, 'wishlist': str.strip})
 
-    return recipients
+    # build list of Persons from data frame
+    people = list()
+    for row in df.itertuples():
+        household = Household[row.household]
+        person_type = PersonType[row.person_type]
+        recipient_type = PersonType[row.recipient_type]
+        people.append(Person(row.first, row.last, household, person_type,
+                             recipient_type, row.email_address,
+                             row.phone_number, row.wishlist))
+    return people
