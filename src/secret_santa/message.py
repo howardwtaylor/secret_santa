@@ -20,8 +20,7 @@ Hello %s,
 Welcome to the %s Secret Santa Gift Exchange!
 
 For you, we picked %s from the hat.  You probably already
-have it but if you don't, here is contact info in case you
-want to catch up:
+have contact info but in case you don't, here it is:
 
 """ % (pick.giver.first, family, pick.receiver.first)
     if pick.receiver.email_address:
@@ -49,12 +48,10 @@ people in the family, you can take a look at their wishlist:
         part3 = ''
 
     part4 = """
-We haven't really talked about how much to spend on the gifts in recent
-years. In the past, I think the limit was $35 but the trend seemed to be
-closer to $50.  I think those are still good guidelines.  Pay what you're
-comfortable with paying.  Nobody will get bent out of shape about that.
-Let me know if you have any problems or questions.  This is a new way of
-doing things, so it wouldn't surprise me if we have some bugs to work out.
+The target gift cost is between $30 and $50, whatever you're comfortable
+paying.  If you disagree and would like to discuss altering the rules,
+please let me know.  Same goes for any problems you might find with
+how the secret santa process works.
 
 Merry Christmas,
 %s
