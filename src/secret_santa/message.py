@@ -1,9 +1,17 @@
+from datetime import datetime, timedelta
 from secret_santa.person import Person
 from secret_santa.pick import Pick
 from typing import List
 
 family = "Taylor"
 signature = "H"
+
+
+# set deadline to return wishlist as 2 days from now
+def get_deadline() -> str:
+    deadline = datetime.now() + timedelta(days=2)
+    return deadline.strftime("%A, %B %d, %Y")
+
 
 def build_email_message_body(pick: Pick, household_members: List[Person]) -> str:
     part1 = """\
@@ -15,7 +23,7 @@ For you, we picked %s from the hat.  You probably already
 have it but if you don't, here is contact info in case you
 want to catch up:
 
-""" % (family, pick.giver.first, pick.receiver.first)
+""" % (pick.giver.first, family, pick.receiver.first)
     if pick.receiver.email_address:
         part1 += f"    email: {pick.receiver.full_email()}\n"
     if pick.receiver.phone_number:
@@ -67,4 +75,21 @@ The picks were:
     for pick in picks:
         result += f'{str(pick)}\n'
     result += '\n'
+    return result
+
+
+def build_wishlist_body(person: Person) -> str:
+    result = """
+Hello %s,
+
+In preparation for the %s Secret Santa choosing, please verify
+that the following link is still suitable and contains your
+preferred gift ideas for this year.
+
+    %s
+
+If this is not the right wishlist, please reply to this message
+with the correct link by %s.
+
+""" % (person.first, family, person.wishlist_link, get_deadline())
     return result

@@ -17,12 +17,26 @@ from typing import List
 #         TypeError: 'EnumMeta' object does not support item assignment
 #
 class Household(Flag):
+    # FRED_AND_WILMA = auto()
+    # BARNEY_AND_BETTY = auto()
     BOB_AND_NAN = auto()
     GORD_AND_HEATHER = auto()
     DEE = auto()
     HOW_AND_HELENE = auto()
     ROB_AND_CINDY = auto()
     ALL = BOB_AND_NAN | GORD_AND_HEATHER | DEE | HOW_AND_HELENE | ROB_AND_CINDY
+    # ALL = FRED_AND_WILMA | BARNEY_AND_BETTY | BOB_AND_NAN | GORD_AND_HEATHER | DEE | HOW_AND_HELENE | ROB_AND_CINDY
+
+
+#
+#  definitely need to build this dynamically.  Consider YAML or a database
+#
+#  Bob and Nan:       211 N Union Ave, Havre de Grace, MD 21078
+#  Gord and Heather:  12918 Sherbrooke Dr, Frisco, TX, 75035
+#  Dee:               427 Corato Ct, Bear, DE, 19701
+#  How and Helene:    295 Carnies Ln, Sykesville, MD 21784
+#  Rob and Cindy:     303 Ryan Dr, Rising Sun, MD  21911
+#
 
 
 #  FIXME: build these dynamically from the loaded PERSON_TYPE names
@@ -95,3 +109,10 @@ def get_other_household_members(member: Person, family: List[Person]) -> List[Pe
         if (person.household == member.household) and (person != member):
             household.append(person)
     return household
+
+
+def find_person_by_full_name(people: List[Person], first: str, last: str) -> Person:
+    for person in people:
+        if (person.first == first) and (person.last == last):
+            return person
+    return None

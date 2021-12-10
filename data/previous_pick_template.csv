@@ -1,0 +1,24 @@
+datetime,giver_first,giver_last,receiver_first,receiver_last
+# 2018
+2018-12-01,Fred,Flintstone,Betty,Rubble
+2018-12-01,Wilma,Flintstone,Bamm-Bamm,Rubble
+2018-12-01,Barney,Rubble,Wilma,Flintstone
+2018-12-01,Betty,Rubble,Pebbles,Flintstone
+2018-12-01,Pebbles,Flintstone,Betty,Rubble
+2018-12-01,Bamm-Bamm,Rubble,Pebbles,Flintstone
+# 2019
+2019-12-01,Fred,Flintstone,Barney,Rubble
+2019-12-01,Wilma,Flintstone,Betty,Rubble
+2019-12-01,Barney,Rubble,Fred,Flintstone
+2019-12-01,Betty,Rubble,Wilma,Flintstone
+2019-12-01,Pebbles,Flintstone,Bamm-Bamm,Rubble
+2019-12-01,Bamm-Bamm,Rubble,Pebbles,Flintstone
+# 2020
+2020-11-30,Fred,Flintstone,Bamm-Bamm,Rubble
+2020-11-30,Wilma,Flintstone,Betty,Rubble
+2020-11-30,Betty,Rubble,Wilma,Flintstone
+2020-11-30,Pebbles,Flintstone,Barney,Rubble
+2020-11-30,Barney,Rubble,Pebbles,Flintstone
+2020-11-30,Bamm-Bamm,Rubble,Fred,Flintstone
+# invalid previous picks
+2021-10-30,Bugs,Bunny,Daffy,Duck

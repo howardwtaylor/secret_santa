@@ -1,8 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.utils import formataddr
 import smtplib
 
-from secret_santa.message import build_pick_list, build_email_message_body
+from secret_santa.message import build_pick_list, build_email_message_body, build_wishlist_body
 from secret_santa.my_secrets import gmail_fullname, gmail_username, gmail_password
 from typing import List
 
@@ -27,15 +27,22 @@ class GmailUtil:
         subject = f"Secret Santa Pick for {get_year()}"
         household = get_other_household_members(pick.receiver, recipients)
         body = build_email_message_body(pick, household)
-        print(body)
-        # almost ready for prime time
-        # self.sendSSL(pick.giver.full_name(), pick.giver.email_address, subject, body)
+        # print(body)
+        self.sendSSL(pick.giver.full_name(), pick.giver.email_address, subject, body)
 
     def send_pick_list(self, picks: List[Pick], iterations: int) -> None:
-        # subject = f"Secret Santa picks for {get_year()}"
-        subject = f"SAMPLE!!! NOT REAL YET!!! Secret Santa picks for {get_year()}"
+        subject = f"Secret Santa picks for {get_year()}"
         body = build_pick_list(picks, iterations)
         self.sendSSL(self.name, self.username, subject, body)
+
+    def send_wishlist(self, person: Person) -> None:
+        if person.wishlist_link:
+            subject = f"Your Secret Santa Wishlist for {get_year()}"
+            body = build_wishlist_body(person)
+            self.sendSSL(person.full_name(), person.email_address, subject, body)
+            print(f"Wishlist reminder sent to {person.full_name()}: {person.wishlist_link}")
+        else:
+            print(f"No wishlist on file for {person.full_name()}")
 
     def sendSSL(self, recipient_name: str, recipient_address: str, subject: str, body: str) -> None:
         recipient = formataddr((recipient_name, recipient_address))
